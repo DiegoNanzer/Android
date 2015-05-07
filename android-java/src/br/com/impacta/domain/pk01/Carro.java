@@ -1,7 +1,5 @@
 package br.com.impacta.domain.pk01;
 
-import javax.swing.JOptionPane;
-
 public class Carro {
 
 	// Estado ( atributo ou propriedades )
@@ -9,20 +7,28 @@ public class Carro {
 	private final String _carroMovimento = "Carro em movimento...";
 	private final String _carroParado = "Carro parado";
 
+	private String menssagem;
+
 	// Construtor ( É um comportamento )
 
 	// Comportamento ( método )
 
-	public String ligar() {
-		return this._carroLigando;
+	public void ligar() {
+		menssagem = this._carroLigando;
 	}
 
-	public String guiar() {
-		return this._carroMovimento;
+	public void guiar() {
+		menssagem = this._carroMovimento;
 	}
 
-	public String parar() {
-		return this._carroParado;
+	public void parar() {
+		menssagem = this._carroParado;
 	}
+
+	@Override
+	public String toString() {
+		return this.menssagem;
+	}
+	
 
 }

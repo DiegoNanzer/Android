@@ -9,19 +9,27 @@ public class CarroTest {
 	 * 
 	 **/
 	public static void main(String[] args) {
-		
+
 		System.out.println("Iniciando teste...");
-		
+
 		Carro c = new Carro();
-		
-		JOptionPane.showMessageDialog(null,  c.ligar());
-		JOptionPane.showMessageDialog(null,  c.guiar());
-		JOptionPane.showMessageDialog(null,  c.guiar());
-		JOptionPane.showMessageDialog(null,  c.parar());
-						
+
+		c.ligar();
+		showMessage(c);
+		c.guiar();
+		showMessage(c);
+		c.guiar();
+		showMessage(c);
+		c.parar();
+		showMessage(c);
 		System.out.println("Teste finalizado");
-		
+
 		c = null;
+
+	}
+
+	private static void showMessage(Carro pMessage) {
+		JOptionPane.showMessageDialog(null, pMessage);
 
 	}
 
