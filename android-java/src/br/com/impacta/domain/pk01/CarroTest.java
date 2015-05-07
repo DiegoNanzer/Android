@@ -1,5 +1,7 @@
 package br.com.impacta.domain.pk01;
 
+import javax.swing.JOptionPane;
+
 public class CarroTest {
 
 	/**
@@ -12,12 +14,11 @@ public class CarroTest {
 		
 		Carro c = new Carro();
 		
-		c.ligar();
-		c.guiar();
-		c.guiar();
-		c.parar();
-		
-				
+		JOptionPane.showMessageDialog(null,  c.ligar());
+		JOptionPane.showMessageDialog(null,  c.guiar());
+		JOptionPane.showMessageDialog(null,  c.guiar());
+		JOptionPane.showMessageDialog(null,  c.parar());
+						
 		System.out.println("Teste finalizado");
 		
 		c = null;

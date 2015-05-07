@@ -5,27 +5,24 @@ import javax.swing.JOptionPane;
 public class Carro {
 
 	// Estado ( atributo ou propriedades )
+	private final String _carroLigando = "Carro ligado";
+	private final String _carroMovimento = "Carro em movimento...";
+	private final String _carroParado = "Carro parado";
 
 	// Construtor ( É um comportamento )
 
 	// Comportamento ( método )
 
-	public void ligar() {
-
-		System.out.println("Carro ligado");
-		JOptionPane.showMessageDialog(null, "Carro ligando...");
+	public String ligar() {
+		return this._carroLigando;
 	}
 
-	public void guiar() {
-
-		System.out.println("Carro em movimento...");
-		JOptionPane.showMessageDialog(null, "Carro em movimento...");
+	public String guiar() {
+		return this._carroMovimento;
 	}
 
-	public void parar() {
-
-		System.out.println("Carro parado!");
-		JOptionPane.showMessageDialog(null, "Carro parado!");
+	public String parar() {
+		return this._carroParado;
 	}
 
 }
