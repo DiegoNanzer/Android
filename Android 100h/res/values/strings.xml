@@ -2,7 +2,22 @@
 <resources>
 
     <string name="app_name">Android 100h</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_hello">Oi Android!</string>
+    <string name="action_settings">Home</string>
+    <string name="action_menu_sorteio">Sorteio</string>
+    <string name="action_menu_gorjeta">Gorjeta</string>
+    <string name="btGorjeta">Gorjeta</string>
+    <string name="title_activity_gorjeta">GorjetaActivity</string>
+    <string name="TituloGorjeta">Tela para Calcular Gorjeta</string>
+    <string name="vConta">Valor da Conta</string>
+    <string name="vGorjeta">Valor gorjeta</string>
+    <string name="vContaTotal">Valor Total</string>
+    <string name="brSorteio">Sorteio</string>
+    <string name="menu_Title">MENU TOSCO</string>
+    <string name="title_activity_sorteio">SorteioActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="result_sorteio">Resultado:</string>
+    <string name="btSortear">Sortear</string>
+    <string name="title_activity_splash">SplashActivity</string>
 
 </resources>
