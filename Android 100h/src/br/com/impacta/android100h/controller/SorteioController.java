@@ -1,6 +1,5 @@
 package br.com.impacta.android100h.controller;
 
-
 public class SorteioController {
 
 	private static SorteioController sorteio;
@@ -24,7 +23,7 @@ public class SorteioController {
 	}
 
 	public void Next() {
-		Integer aux = (int) (1 + Math.random() * 60);
+		Integer aux = (int)(1 + Math.random() * 60);
 
 		if (auxPosicao == (qtdItens)) {
 			auxPosicao = 0;
@@ -50,11 +49,10 @@ public class SorteioController {
 
 	public CharSequence getResultado() {
 		StringBuilder str = new StringBuilder();
-				
-		
-		for (int i = 0; i < this.listaInterna.length; i++) {
-			if( this.listaInterna[i] != null )
-			str.append(String.format("%s ", this.listaInterna[i]));
+
+		for (Integer i = 0; i < this.listaInterna.length; i++) {
+			if (this.listaInterna[i] != null)
+				str.append(String.format("%02d ", this.listaInterna[i]));
 		}
 		return str.toString();
 	}

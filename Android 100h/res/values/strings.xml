@@ -19,5 +19,5 @@
     <string name="result_sorteio">Resultado:</string>
     <string name="btSortear">Sortear</string>
     <string name="title_activity_splash">SplashActivity</string>
-
+	<string name="msgRetorno">Voltando...</string>
 </resources>

@@ -2,6 +2,8 @@ package br.com.impacta.android100h.view;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -11,9 +13,12 @@ import android.widget.Toast;
 import br.com.impacta.android100h.R;
 import br.com.impacta.android100h.controller.GorjetaController;
 import br.com.impacta.android100h.domain.model.Gorjeta;
+import br.com.impacta.android100h.pattern.SeekBarChangedAdapter;
+import br.com.impacta.android100h.pattern.TextWatcherAdapter;
 
 public class GorjetaActivity extends Activity {
 
+	GorjetaController ctr;
 	EditText txtValorConta, txtValorGorjeta, txtValorTotal;
 	TextView lblPercentagemTextView;
 	SeekBar sk;
@@ -24,13 +29,11 @@ public class GorjetaActivity extends Activity {
 		setContentView(R.layout.activity_gorjeta);
 
 		txtValorConta = (EditText) findViewById(R.id.txtValorConta);
+		txtValorConta.addTextChangedListener(new TextChanged());
+		
 		txtValorGorjeta = (EditText) findViewById(R.id.txtGorjeta);
 		txtValorTotal = (EditText) findViewById(R.id.txtValorTotal);
-		
 
-		txtValorGorjeta.setEnabled(false);
-		txtValorTotal.setEnabled(false);
-		
 		lblPercentagemTextView = (TextView) findViewById(R.id.lblPorcentagem);
 
 		lblPercentagemTextView.setText("0%");
@@ -38,54 +41,55 @@ public class GorjetaActivity extends Activity {
 		sk = (SeekBar) findViewById(R.id.skPorcentagem);
 		sk.setOnSeekBarChangeListener(new SeekChange());
 
+		ctr = new GorjetaController();
+
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.gorjeta, menu);
-		return true;
+	void setValuesView(double valorConta, double percentual) {
+		Gorjeta gorjeta = ctr.CalcularGorjeta(valorConta, percentual);
+
+		lblPercentagemTextView.setText(String.valueOf(percentual) + " %");
+		txtValorGorjeta.setText(String.valueOf(gorjeta.getValorGorjeta()));
+		txtValorTotal.setText(String.valueOf(gorjeta.getValorTotal()));
 	}
 
-	class SeekChange implements OnSeekBarChangeListener {
+	private class SeekChange extends SeekBarChangedAdapter {
 
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress,
 				boolean fromUser) {
-			
 			try {
-				
-				lblPercentagemTextView.setText(String.valueOf(progress) + " %");
-				
-				double valorConta = Double.parseDouble(txtValorConta.getText().toString());
-				double percentual = Double.parseDouble(String.valueOf(progress));
-				
-				GorjetaController ctr = new GorjetaController();
-				Gorjeta gorjeta = ctr.CalcularGorjeta(valorConta, percentual);
-				
-				txtValorGorjeta.setText(String.valueOf( gorjeta.getValorGorjeta()));
-				txtValorTotal.setText(String.valueOf( gorjeta.getValorTotal()));
-				
-				ctr = null;
-				gorjeta = null;
+
+				double valorConta = Double.parseDouble(txtValorConta.getText()
+						.toString());
+				double percentual = Double
+						.parseDouble(String.valueOf(progress));
+				setValuesView(valorConta, percentual);
 			} catch (Exception e) {
-				Toast toast = Toast.makeText(getApplicationContext(),"Não foi possível calcular" , Toast.LENGTH_LONG);
+				Toast toast = Toast.makeText(getApplicationContext(),
+						"Não foi possível calcular", Toast.LENGTH_LONG);
 				toast.show();
 			}
-			
-			
 		}
+	}
 
+	private class TextChanged extends TextWatcherAdapter {
 		@Override
-		public void onStartTrackingTouch(SeekBar seekBar) {
-			// TODO Auto-generated method stub
+		public void onTextChanged(CharSequence s, int start, int before,
+				int count) {
+			try {
+				double valorConta = Double.parseDouble(s.toString());
+				double percentual = Double.parseDouble(String.valueOf(sk
+						.getProgress()));
 
-		}
-
-		@Override
-		public void onStopTrackingTouch(SeekBar seekBar) {
-			// TODO Auto-generated method stub
-
+				setValuesView(valorConta, percentual);
+				
+			} catch (Exception e) {
+				Toast toast = Toast.makeText(getApplicationContext(),
+						"Não foi possível calcular", Toast.LENGTH_LONG);
+				toast.show();
+			}
+			super.onTextChanged(s, start, before, count);
 		}
 
 	}
